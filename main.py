@@ -1,6 +1,5 @@
-### import arcpy
+ import arcpy
 
-# Function to display the menu options
 def display_menu():
     print("Spatial Join Menu:")
     print("1. Select target feature class")
@@ -9,12 +8,9 @@ def display_menu():
     print("4. Perform spatial join")
     print("5. Exit")
 
-# Function to perform the spatial join
 def perform_spatial_join(target_fc, join_fc, output_name, spatial_relationship, field_mappings):
     arcpy.SpatialJoin_analysis(target_fc, join_fc, output_name, join_operation="JOIN_ONE_TO_ONE",
                                join_type="KEEP_ALL", match_option=spatial_relationship, field_mapping=field_mappings)
-
-# Main program loop
 def main():
     target_fc = ""
     join_fc = ""
@@ -70,8 +66,6 @@ def main():
 
             spatial_relationship = input("Enter the spatial relationship (INTERSECT, CONTAINS, WITHIN, etc.): ")
             output_name = input("Enter the name of the output feature class: ")
-
-            # Create a full path for the output feature class using the workspace and output name
             output_fc = arcpy.env.workspace + "\\" + output_name
 
             perform_spatial_join(target_fc, join_fc, output_fc, spatial_relationship, field_mappings)
